@@ -4,6 +4,14 @@ require "minitest/autorun"
 # require "pp"
 require "declarative/testing"
 
+# Helper method to normalize hash inspect format for cross-Ruby version compatibility
+# Ruby 3.4 changed from {:key => value} to {key: value} in inspect output
+def normalize_inspect(inspect_string)
+  inspect_string
+    .gsub(/" => /, '"=>')                      # Remove spaces around => for string keys: "key" => value → "key"=>value
+    .gsub(/([{,\[]\s*)(\w+): /, '\1:\2=>')     # Convert symbol keys: {key: value} → {:key=>value} (only after {, [, or ,)
+end
+
 require "disposable/twin/coercion"
 DRY_TYPES_CONSTANT = Disposable::Twin::Coercion::DRY_TYPES_CONSTANT
 DRY_TYPES_INT_CONSTANT = Disposable::Twin::Coercion::DRY_TYPES_VERSION < Gem::Version.new("0.13.0") ? 'Int' : 'Integer'

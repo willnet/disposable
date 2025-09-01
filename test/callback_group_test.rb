@@ -158,11 +158,11 @@ class CallbackGroupInheritanceTest < Minitest::Spec
 
   it do
     expect(Group.hooks.size).must_equal 4
-    expect(Group.hooks[0].to_s).must_equal "[:on_change, :change!, {}]"
+    expect(normalize_inspect(Group.hooks[0].to_s)).must_equal "[:on_change, :change!, {}]"
     # Group.hooks[1][1][:nested].hooks.to_s.must_equal "[[:on_add, [:notify_album!]],[:on_add, [:reset_song!]]]"
-    expect(Group.hooks[2].to_s).must_equal "[:on_change, :rehash_name!, {:property=>:title}]"
+    expect(normalize_inspect(Group.hooks[2].to_s)).must_equal "[:on_change, :rehash_name!, {:property=>:title}]"
 
-    expect(Group.definitions.get(Group.hooks[3][1])[:nested].hooks.to_s).must_equal "[[:on_change, :sing!, {}]]"
+    expect(normalize_inspect(Group.definitions.get(Group.hooks[3][1])[:nested].hooks.to_s)).must_equal "[[:on_change, :sing!, {}]]"
   end
 
   class EmptyGroup < Group
