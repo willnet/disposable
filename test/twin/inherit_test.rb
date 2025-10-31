@@ -40,8 +40,8 @@ class InheritTest < Minitest::Spec
 
   # definitions are not shared.
   it do
-    expect(normalize_inspect(Twin::Album.definitions.get(:name).extend(Declarative::Inspect).inspect)).must_equal "#<Disposable::Twin::Definition: @options={:fromage=>:_name, :private_name=>:name, :name=>\"name\"}>"
-    expect(normalize_inspect(Twin::Compilation.definitions.get(:name).extend(Declarative::Inspect).inspect)).must_equal "#<Disposable::Twin::Definition: @options={:fromage=>:_name, :private_name=>:name, :name=>\"name\", :writeable=>false}>" # FIXME: where did :inherit go?
+    assert_equal "#<Disposable::Twin::Definition: @options={:fromage=>:_name, :private_name=>:name, :name=>\"name\"}>", normalize_inspect(Twin::Album.definitions.get(:name).extend(Declarative::Inspect).inspect)
+    assert_equal "#<Disposable::Twin::Definition: @options={:fromage=>:_name, :private_name=>:name, :name=>\"name\", :writeable=>false}>", normalize_inspect(Twin::Compilation.definitions.get(:name).extend(Declarative::Inspect).inspect) # FIXME: where did :inherit go?
   end
 
 
