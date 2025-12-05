@@ -64,7 +64,7 @@ class HashTest < Minitest::Spec
 
     song.sync
 
-    assert_equal "#<struct HashTest::Model id=nil, content={\"band\"=>{\"label\"=>{\"location\"=>\"San Francisco\"}}, \"releases\"=>[]}>", normalize_inspect(model.inspect)
+    assert_equal "#<struct HashTest::Model id=nil, content={\"band\"=>{\"label\"=>{\"location\"=>\"San Francisco\"}}, \"releases\"=>[]}>", Trailblazer::Core::Utils.inspect(model.inspect)
   end
 
   it "#appends to collections" do
@@ -76,7 +76,7 @@ class HashTest < Minitest::Spec
 
     song.sync
 
-    assert_equal "#<struct HashTest::Model id=nil, content={\"band\"=>{\"label\"=>{}}, \"releases\"=>[{\"version\"=>1}]}>", normalize_inspect(model.inspect)
+    assert_equal "#<struct HashTest::Model id=nil, content={\"band\"=>{\"label\"=>{}}, \"releases\"=>[{\"version\"=>1}]}>", Trailblazer::Core::Utils.inspect(model.inspect)
   end
 
   it "doesn't erase existing, undeclared content" do
@@ -88,7 +88,7 @@ class HashTest < Minitest::Spec
     # puts song.content.class.ancestors
     song.sync
 
-    assert_equal "#<struct HashTest::Model id=nil, content={\"artist\"=>{}, \"band\"=>{\"label\"=>{\"location\"=>\"San Francisco\"}}, \"releases\"=>[]}>", normalize_inspect(model.inspect)
+    assert_equal "#<struct HashTest::Model id=nil, content={\"artist\"=>{}, \"band\"=>{\"label\"=>{\"location\"=>\"San Francisco\"}}, \"releases\"=>[]}>", Trailblazer::Core::Utils.inspect(model.inspect)
   end
 
   it "doesn't erase existing, undeclared content in existing content" do
@@ -99,7 +99,7 @@ class HashTest < Minitest::Spec
 
     song.sync
 
-    assert_equal "#<struct HashTest::Model id=nil, content={\"band\"=>{\"label\"=>{\"owner\"=>\"Brett Gurewitz\", \"location\"=>\"San Francisco\"}, \"genre\"=>\"Punkrock\"}, \"releases\"=>[]}>", normalize_inspect(model.inspect)
+    assert_equal "#<struct HashTest::Model id=nil, content={\"band\"=>{\"label\"=>{\"owner\"=>\"Brett Gurewitz\", \"location\"=>\"San Francisco\"}, \"genre\"=>\"Punkrock\"}, \"releases\"=>[]}>", Trailblazer::Core::Utils.inspect(model.inspect)
   end
 
 

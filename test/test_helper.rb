@@ -3,14 +3,7 @@ require "minitest/autorun"
 # require "representable/debug"
 # require "pp"
 require "declarative/testing"
-
-# Helper method to normalize hash inspect format for cross-Ruby version compatibility
-# Ruby 3.4 changed from {:key => value} to {key: value} in inspect output
-def normalize_inspect(inspect_string)
-  inspect_string
-    .gsub(/" => /, '"=>')                      # Remove spaces around => for string keys: "key" => value → "key"=>value
-    .gsub(/([{,\[]\s*)(\w+): /, '\1:\2=>')     # Convert symbol keys: {key: value} → {:key=>value} (only after {, [, or ,)
-end
+require "trailblazer/core"
 
 require "disposable/twin/coercion"
 DRY_TYPES_CONSTANT = Disposable::Twin::Coercion::DRY_TYPES_CONSTANT
@@ -86,4 +79,3 @@ module Disposable
     end
   end
 end
-
